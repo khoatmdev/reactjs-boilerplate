@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { styled } from '@mui/material/styles';
+// import { styled } from '@mui/material/styles';
+import styled from '@emotion/styled';
 
 import PostItem from './PostItem';
 import { usePostSlice } from './slice';
@@ -38,7 +39,10 @@ const Posts = () => {
 
 export default Posts;
 
-const Wrapper = styled('div')({
-    margin: '5px 5px',
-    padding: '5px 5px',
-});
+// const Wrapper = styled('div')({
+//     margin: '5px 5px',
+//     padding: '5px 5px',
+// });
+const Wrapper = styled.div`
+    margin: 5px;
+`;
