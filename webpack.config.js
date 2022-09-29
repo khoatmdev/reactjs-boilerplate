@@ -2,8 +2,7 @@ const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-    mode: 'production',
+var config = {
     entry: {
         bundle: './src/index.js',
     },
@@ -53,9 +52,6 @@ module.exports = {
             },
         },
     },
-    devServer: {
-        historyApiFallback: true,
-    },
     plugins: [
         new HtmlWebpackPlugin({
             template: './public/index.html',
@@ -70,9 +66,21 @@ module.exports = {
             '@components': path.resolve(__dirname, 'src/app/components'),
         },
     },
-    devtool: 'inline-source-map',
     devServer: {
         port: 8080,
         historyApiFallback: true,
     },
+};
+
+module.exports = (env, argv) => {
+    console.log('argv.mode: ', argv.mode);
+    if (argv.mode === 'development') {
+        config.devtool = 'inline-source-map';
+    }
+
+    if (argv.mode === 'production') {
+        config.devtool = false;
+    }
+
+    return config;
 };

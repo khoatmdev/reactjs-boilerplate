@@ -1,7 +1,11 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
 export function createReducer(injectedReducers = {}) {
-    return combineReducers({
-        ...injectedReducers,
-    });
+    if (Object.keys(injectedReducers).length === 0) {
+        return {};
+    } else {
+        return combineReducers({
+            ...injectedReducers,
+        });
+    }
 }
